@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -25,6 +26,8 @@ Route::middleware('auth')->group(function () {
    
 });
 Route::get('/', function () { return Inertia::render('Home'); })->name('home');
-Route::get('/home', function () {return Inertia::render('Home');})->name('home');
+Route::get('/home', function () {return Inertia::render('About');})->name('about');
+Route::get('/products', [ProductController::class, 'index'])->name('products.index')->middleware('auth');
 
 require __DIR__.'/auth.php';
+
